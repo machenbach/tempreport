@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="/static/js/base.js"></script>
+    <script type="text/javascript">
+    var mike = mike || {};
+
+    /** devrel namespace for Google Developer Relations projects. */
+    mike.tempreport = mike.tempreport || {};
+    
+    mike.tempreport.vizinitialized = false;
+
+
+    // Load the Visualization API and the piechart package.
+	google.load('visualization', '1.0', {'packages':['corechart', 'gauge']});
+
+	// Set a callback to run when the Google Visualization API is loaded.
+	google.setOnLoadCallback(function() {
+		mike.tempreport.vizinitialized = true;
+	});
+</script>
+  </head>
+
+  <body>
+  	<table>
+	<tr>
+	<td>
+		<form action="javascript:void(0);">
+		    <input id="home" type="submit" value="Innsbruck">
+		</form>
+	</td>
+	<td>
+		<form action="javascript:void(0);">
+		    <input id="innsbruck" type="submit" value="Silvia">
+		</form>
+	</td>
+	</tr>
+	</table>
+	<table>
+	<tr>
+	<td>
+		<form action="javascript:void(0);">
+		    <input id="h24" type="submit" value="24h">
+		</form>
+	</td>
+	<td>
+		<form action="javascript:void(0);">
+		    <input id="h12" type="submit" value="12h">
+		</form>
+	</td>
+	<td>
+		<form action="javascript:void(0);">
+		    <input id="h8" type="submit" value="8h">
+		</form>
+	</td>
+	<td>
+		<form action="javascript:void(0);">
+		    <input id="h4" type="submit" value="4h">
+		</form>
+	</td>
+	<td>
+		<form action="javascript:void(0);">
+		    <input id="h2" type="submit" value="2h">
+		</form>
+	</td>
+	</tr>
+  	</table>
+  	<p id="message_div" style="color: red; font-size: xx-large; font-family: sans-serif"></p>
+	<!-- Div that holds the gauges -->
+	<div id="gauge_div" align="center" style="height=200px; width = 400px; align=center"></div>
+	
+	<!--Div that will hold the  chart-->
+	<div id="chart_div" height="200px"></div>
+	<script type="text/javascript">
+	function init() {
+	    mike.tempreport.init('//' + window.location.host + '/_ah/api');
+	}
+	</script>
+	<script src="https://apis.google.com/js/client.js?onload=init"></script>
+  </body>
+</html>

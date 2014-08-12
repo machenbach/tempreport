@@ -1,0 +1,10 @@
+Labels should be a db -- done
+incorporate labels in graphs -- done
+Graphs needs to be main page
+Style for tabs in graphs
+auth in graphs
+Admin page for allowed users
+endpoint for temp reports -- done
+examine styles, nicer interface
+add clock
+call for last temp,time reading -- done
