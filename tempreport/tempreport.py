@@ -9,7 +9,7 @@ from protorpc import messages
 from protorpc import message_types
 from protorpc import remote
 
-
+import logging
 
 ''' Database Entities '''
 
@@ -36,18 +36,20 @@ class LabelMsg(messages.Message):
      
 @endpoints.api(name='tempreport', version='v1')
 class TempReport(remote.Service):
-
+    
     ''' List the temperatures at the site for a given time range '''    
     # resource container for the readings call
     ReadingsResource = endpoints.ResourceContainer(
             message_types.VoidMessage,
             site=messages.StringField(1),
-            hours=messages.IntegerField(2, variant = messages.Variant.INT32))
+            hours=messages.IntegerField(2, variant = messages.Variant.INT32),
+            startDate=messages.StringField(3))
 
     @endpoints.method(ReadingsResource, TempReadings,
-                      path='readings/{site}/{hours}', http_method='GET',
+                      path='readings/{site}/{hours}?startdate={startDate}', http_method='GET',
                       name='tempreading.readings')
     def readings(self, request):
+        logging.warning("start date %s" % request.startDate)
         hours = request.hours if request.hours is not None else 8
         starttime = (datetime.now() + timedelta(minutes=-hours*60))
         dbReadings = TempReading2.query(TempReading2.date >= starttime, ancestor = ndb.Key(TempReading2, request.site)).order(-TempReading2.date).fetch()
