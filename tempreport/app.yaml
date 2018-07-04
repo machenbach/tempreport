@@ -9,7 +9,7 @@ handlers:
 - url: /static
   static_dir: static
  
-- url: /_ah/spi/.*
+- url: /_ah/api/.*
   script: tempreport.api_endpoint
  
 - url: /
@@ -18,7 +18,7 @@ handlers:
    
  
 libraries:
-- name: endpoints
-  version: latest
 - name: pycrypto
   version: latest
+- name: ssl
+  version: 2.7.11
